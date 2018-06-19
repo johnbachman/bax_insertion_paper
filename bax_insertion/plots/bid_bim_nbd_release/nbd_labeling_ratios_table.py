@@ -3,7 +3,7 @@ in the docs."""
 
 import sys
 import csv
-from tbidbaxlipo.data.parse_bid_bim_nbd_release import labeling_ratios as lr
+from bax_insertion.data.parse_bid_bim_nbd_release import labeling_ratios as lr
 
 # Sort the residues in numerical (not alphanumeric) order
 sorted_residues = sorted(lr.keys(), key=lambda x: int(x))

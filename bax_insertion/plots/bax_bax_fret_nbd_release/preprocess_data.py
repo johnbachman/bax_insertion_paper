@@ -1,10 +1,10 @@
 import sys
 import numpy as np
 from copy import deepcopy
-from tbidbaxlipo.data.parse_bax_bax_fret_nbd_release import df, nbd_residues
-#from tbidbaxlipo.data.parse_bid_bim_nbd_release import labeling_ratios
-from tbidbaxlipo.util.calculate_error_variance import calc_err_var
-from tbidbaxlipo.util.find_outliers import find_outliers
+from bax_insertion.data.parse_bax_bax_fret_nbd_release import df, nbd_residues
+#from bax_insertion.data.parse_bid_bim_nbd_release import labeling_ratios
+from bax_insertion.util.calculate_error_variance import calc_err_var
+from bax_insertion.util.find_outliers import find_outliers
 
 this_module = sys.modules[__name__]
 

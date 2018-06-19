@@ -1,7 +1,7 @@
 import sys
-from tbidbaxlipo.plots.bid_bim_fret_nbd_release.preprocess_data \
+from bax_insertion.plots.bid_bim_fret_nbd_release.preprocess_data \
         import df, df_pre, nbd_residues
-import tbidbaxlipo.plots.nbd_bax_analysis as nba
+import bax_insertion.plots.nbd_bax_analysis as nba
 from matplotlib import pyplot as plt
 
 if __name__ == '__main__':

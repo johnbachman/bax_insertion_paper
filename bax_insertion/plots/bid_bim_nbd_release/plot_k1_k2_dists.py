@@ -1,4 +1,4 @@
-#from tbidbaxlipo.data.parse_bid_bim_nbd_release import nbd_residues
+#from bax_insertion.data.parse_bid_bim_nbd_release import nbd_residues
 import cPickle
 from itertools import product
 import numpy as np
@@ -8,8 +8,8 @@ from matplotlib import pyplot as plt
 import sys
 import re
 import os
-from tbidbaxlipo.util import format_axis, set_fig_params_for_publication
-from tbidbaxlipo.plots.bid_bim_nbd_release.preprocess_data \
+from bax_insertion.util import format_axis, set_fig_params_for_publication
+from bax_insertion.plots.bid_bim_nbd_release.preprocess_data \
         import nbd_residues, max_nbd_value, df
 import pickle
 import csv

@@ -1,7 +1,7 @@
 import yaml
 from itertools import product, izip
-from tbidbaxlipo.models import one_cpt
-from tbidbaxlipo.models.nbd import multiconf
+from bax_insertion.models import one_cpt
+from bax_insertion.models.nbd import multiconf
 from copy import copy
 import sys
 import os

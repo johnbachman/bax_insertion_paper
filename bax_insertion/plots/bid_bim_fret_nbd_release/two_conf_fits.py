@@ -1,5 +1,5 @@
-from tbidbaxlipo.plots.nbd_bax_analysis import plot_2conf_fits, plot_3conf_fits
-from tbidbaxlipo.plots.bid_bim_fret_nbd_release.preprocess_data \
+from bax_insertion.plots.nbd_bax_analysis import plot_2conf_fits, plot_3conf_fits
+from bax_insertion.plots.bid_bim_fret_nbd_release.preprocess_data \
         import df_pre, df, nbd_residues
 from matplotlib import pyplot as plt
 

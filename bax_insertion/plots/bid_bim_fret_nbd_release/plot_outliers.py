@@ -1,4 +1,4 @@
-from tbidbaxlipo.data.parse_bid_bim_fret_nbd_release import df, nbd_residues
+from bax_insertion.data.parse_bid_bim_fret_nbd_release import df, nbd_residues
 from preprocess_data import df_pre
 from itertools import product
 import numpy as np

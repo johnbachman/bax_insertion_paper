@@ -1,7 +1,7 @@
-from tbidbaxlipo.data.parse_bid_bim_nbd_release import df, nbd_residues
+from bax_insertion.data.parse_bid_bim_nbd_release import df, nbd_residues
 from matplotlib import pyplot as plt
 import numpy as np
-from tbidbaxlipo.util import set_fig_params_for_publication, format_axis, \
+from bax_insertion.util import set_fig_params_for_publication, format_axis, \
                              fontsize
 import sys
 import cPickle

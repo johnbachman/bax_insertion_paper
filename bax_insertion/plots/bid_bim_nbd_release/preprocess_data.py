@@ -1,8 +1,8 @@
 import sys
 import numpy as np
-from tbidbaxlipo.data.parse_bid_bim_nbd_release import df, nbd_residues, \
+from bax_insertion.data.parse_bid_bim_nbd_release import df, nbd_residues, \
                                                        labeling_ratios
-from tbidbaxlipo.util.calculate_error_variance import calc_err_var
+from bax_insertion.util.calculate_error_variance import calc_err_var
 from copy import deepcopy
 
 this_module = sys.modules[__name__]

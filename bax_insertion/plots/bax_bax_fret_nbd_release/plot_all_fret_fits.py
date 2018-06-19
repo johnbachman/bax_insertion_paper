@@ -1,6 +1,6 @@
-from tbidbaxlipo.util import set_fig_params_for_publication, format_axis, \
+from bax_insertion.util import set_fig_params_for_publication, format_axis, \
                              fontsize
-from tbidbaxlipo.plots.bax_bax_fret_nbd_release.preprocess_data import \
+from bax_insertion.plots.bax_bax_fret_nbd_release.preprocess_data import \
         nbd_residues, df_pre as df
 import numpy as np
 from matplotlib import pyplot as plt
@@ -17,7 +17,7 @@ set_fig_params_for_publication()
 #                  ('Bid', '68', '1', 'FRET')]
 
 num_samples = 100
-module_name = 'tbidbaxlipo.plots.bax_bax_fret_nbd_release'
+module_name = 'bax_insertion.plots.bax_bax_fret_nbd_release'
 #mcmc_path = os.path.join(os.path.dirname(sys.modules[module_name].__file__),
 #                         'fret_mcmc')
 

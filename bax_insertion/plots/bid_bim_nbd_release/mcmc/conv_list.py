@@ -2,7 +2,7 @@ import os
 import numpy as np
 import cPickle
 import sys
-from tbidbaxlipo.data.parse_bid_bim_nbd_release import nbd_residues
+from bax_insertion.data.parse_bid_bim_nbd_release import nbd_residues
 import subprocess
 
 def save_last_position(mcmc_filename, pos_filename):
@@ -79,7 +79,7 @@ for activator in ['Bid', 'Bim']:
                         cmd_list = ['bsub', '-q', 'parallel', '-n', '10',
                                     '-W', '100:00', '-N', '-o',
                                     out_filename, '-a', 'openmpi', 'mpirun.lsf',
-                                    'python', '-m', 'tbidbaxlipo.pt.run_pt',
+                                    'python', '-m', 'bax_insertion.pt.run_pt',
                                     fit_filename, '1', position_filename]
                         print ' '.join(cmd_list)
                         subprocess.call(cmd_list)

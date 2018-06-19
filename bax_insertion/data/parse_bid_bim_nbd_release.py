@@ -4,10 +4,10 @@ from itertools import product
 import numpy as np
 import pandas as pd
 from openpyxl import load_workbook
-import tbidbaxlipo.data
+import bax_insertion.data
 
 
-data_path = os.path.dirname(sys.modules['tbidbaxlipo.data'].__file__)
+data_path = os.path.dirname(sys.modules['bax_insertion.data'].__file__)
 data_file = os.path.abspath(os.path.join(data_path,
               '2015-03-06-Compiled Release percentages and NBD F-F0_V2.xlsx'))
             #'Compiled Release percentages and NBD F-F0.xlsx'))

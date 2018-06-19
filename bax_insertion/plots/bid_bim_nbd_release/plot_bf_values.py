@@ -5,9 +5,9 @@ import numpy as np
 from matplotlib import pyplot as plt
 import matplotlib.lines as mlines
 from itertools import product
-from tbidbaxlipo.util import format_axis, set_fig_params_for_publication,\
+from bax_insertion.util import format_axis, set_fig_params_for_publication,\
                              fontsize
-from tbidbaxlipo.plots.nbd_bax_analysis import site_region, color_dict
+from bax_insertion.plots.nbd_bax_analysis import site_region, color_dict
 set_fig_params_for_publication()
 
 evi_dict = {}

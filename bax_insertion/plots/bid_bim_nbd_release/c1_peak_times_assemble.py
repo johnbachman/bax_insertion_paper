@@ -4,7 +4,7 @@ them as a single CSV file and pandas dataframe.
 
 Example usage::
 
-    python -m tbidbaxlipo.plots.bid_bim_nbd_release.c1_peak_times_assemble *_3confs.mcmc.c1_peak
+    python -m bax_insertion.plots.bid_bim_nbd_release.c1_peak_times_assemble *_3confs.mcmc.c1_peak
 """
 
 import sys

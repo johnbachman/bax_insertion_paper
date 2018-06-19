@@ -1,11 +1,11 @@
-from tbidbaxlipo.plots import nbd_bax_analysis as nba
+from bax_insertion.plots import nbd_bax_analysis as nba
 from matplotlib import pyplot as plt
-from tbidbaxlipo.models.nbd.multiconf import Builder
+from bax_insertion.models.nbd.multiconf import Builder
 import numpy as np
 import cPickle
-from tbidbaxlipo.util import set_fig_params_for_publication, format_axis, \
+from bax_insertion.util import set_fig_params_for_publication, format_axis, \
                              fontsize
-from tbidbaxlipo.plots.bid_bim_fret_nbd_release.preprocess_data \
+from bax_insertion.plots.bid_bim_fret_nbd_release.preprocess_data \
     import df_pre, nbd_residues
 import matplotlib.patches as mpatches
 import sys

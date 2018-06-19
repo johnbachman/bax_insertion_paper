@@ -1,6 +1,6 @@
-from tbidbaxlipo.util import set_fig_params_for_publication, format_axis, \
+from bax_insertion.util import set_fig_params_for_publication, format_axis, \
                              fontsize
-from tbidbaxlipo.plots.bax_bax_fret_nbd_release.preprocess_data import \
+from bax_insertion.plots.bax_bax_fret_nbd_release.preprocess_data import \
         df_pre as df
 import numpy as np
 from matplotlib import pyplot as plt

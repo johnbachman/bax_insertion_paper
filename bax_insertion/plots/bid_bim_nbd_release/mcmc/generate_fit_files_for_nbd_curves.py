@@ -1,7 +1,7 @@
 import os
 import sys
 import yaml
-from tbidbaxlipo.data.parse_bid_bim_nbd_release import nbd_residues
+from bax_insertion.data.parse_bid_bim_nbd_release import nbd_residues
 
 # Arguments shared across all fits
 args = {
@@ -38,7 +38,7 @@ for activator in ['Bid']:
             # Initialize the data portion of the dict
             data_args = {
               'initial_condition_var': None,
-              'module': 'tbidbaxlipo.plots.bid_bim_nbd_release.preprocess_data'}
+              'module': 'bax_insertion.plots.bid_bim_nbd_release.preprocess_data'}
             data_args['time_var'] = 'time_%s_NBD_%s_r%s' % \
                                     (activator, nbd_residue, rep_num)
             data_args['data_var'] = 'data_%s_NBD_%s_r%s' % \

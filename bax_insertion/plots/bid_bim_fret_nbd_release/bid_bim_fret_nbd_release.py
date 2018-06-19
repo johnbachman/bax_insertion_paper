@@ -1,16 +1,16 @@
-from tbidbaxlipo.data.parse_bid_bim_fret_nbd_release import df, nbd_residues
+from bax_insertion.data.parse_bid_bim_fret_nbd_release import df, nbd_residues
 import pandas as pd
 import matplotlib
 from matplotlib import pyplot as plt
 import numpy as np
-from tbidbaxlipo.util import fitting
-from tbidbaxlipo.models.nbd.multiconf import Builder
+from bax_insertion.util import fitting
+from bax_insertion.models.nbd.multiconf import Builder
 from pysb.integrate import Solver
 import itertools
 import titration_fits as tf
 import scipy.stats
 import scipy.signal
-from tbidbaxlipo.util.error_propagation import calc_ratio_sd
+from bax_insertion.util.error_propagation import calc_ratio_sd
 
 font = {'size': 10}
 matplotlib.rc('font', **font)

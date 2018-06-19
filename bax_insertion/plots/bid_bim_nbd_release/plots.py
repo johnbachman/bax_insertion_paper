@@ -1,6 +1,6 @@
 import sys
-from tbidbaxlipo.data.parse_bid_bim_nbd_release import df, nbd_residues
-import tbidbaxlipo.plots.nbd_bax_analysis as nba
+from bax_insertion.data.parse_bid_bim_nbd_release import df, nbd_residues
+import bax_insertion.plots.nbd_bax_analysis as nba
 from matplotlib import pyplot as plt
 
 if __name__ == '__main__':
@@ -49,7 +49,7 @@ if __name__ == '__main__':
                                      plot_filename='data1_derivatives_Bid_54_r1',
                                      plot_tb_peak=True)
     elif plot_type == 'evidence':
-        from tbidbaxlipo.plots.bid_bim_nbd_release.plot_bf_values import \
+        from bax_insertion.plots.bid_bim_nbd_release.plot_bf_values import \
              plot_2confs, plot_3confs
         plot_2confs('data1_evidence_2confs')
         plot_3confs('data1_evidence_3confs')

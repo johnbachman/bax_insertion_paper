@@ -2,7 +2,7 @@ import yaml
 import pickle
 import sys
 import os
-from tbidbaxlipo.util import emcee_fit
+from bax_insertion.util import emcee_fit
 import numpy as np
 
 def run(args, mcmc_filename, random_seed, pos_filename, mpi=True):
