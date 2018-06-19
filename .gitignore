@@ -1,5 +1,8 @@
 # Density data for stoplight plots
 *_mx.txt
+doc/_build_old
+doc/_build
+doc/_static
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
