@@ -65,7 +65,7 @@ for nbd_ix, nbd_residue in enumerate(nbd_residues):
 
                 # Iterate and fill the array of column values
                 value_vector = []
-                data_col = sheet.columns[col_index]\
+                data_col = list(sheet.columns)[col_index]\
                                          [FIRST_ROW_INDEX:LAST_ROW_INDEX]
                 for cell in data_col:
                     if (cell.value == None):

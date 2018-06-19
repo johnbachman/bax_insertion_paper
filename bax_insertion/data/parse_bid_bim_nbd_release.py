@@ -33,11 +33,11 @@ def get_data_from_sheet(sheet, activator, datatype, first_row_index, num_rows,
     # Get data column by column as a list of lists
     num_reps_per_mutant = 3
     time_vector = [cell.value for cell in
-            sheet.columns[0][first_row_index:last_row_index]]
+                   list(sheet.columns)[0][first_row_index:last_row_index]]
 
     data = []
     tuples = []
-    for i, col in enumerate(sheet.columns[FIRST_COL_INDEX:]):
+    for i, col in enumerate(list(sheet.columns)[FIRST_COL_INDEX:]):
         # The replicate index
         rep_index = (i % num_reps_per_mutant) + 1
         # Get the name for this mutant--it's in the first col for the rep,
@@ -68,7 +68,7 @@ def get_data_from_sheet(sheet, activator, datatype, first_row_index, num_rows,
 
 def get_labeling_ratios(sheet, mutant_name_row, ratio_row):
     ratios = {}
-    for i, col in enumerate(sheet.columns[FIRST_COL_INDEX:]):
+    for i, col in enumerate(list(sheet.columns)[FIRST_COL_INDEX:]):
         mutant_name = str(col[mutant_name_row].value)
         if mutant_name == '' or mutant_name is None or mutant_name == 'None':
             continue

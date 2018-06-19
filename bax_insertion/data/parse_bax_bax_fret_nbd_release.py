@@ -54,7 +54,7 @@ for nbd_ix, nbd_residue in enumerate(nbd_residues):
         for dtype_ix, dtype in enumerate(datatypes_time):
             # Iterate and fill the array of column values
             vector = []
-            data_col = sheet.columns[col_index]\
+            data_col = list(sheet.columns)[col_index]\
                                      [FIRST_ROW_INDEX:LAST_ROW_INDEX]
             for cell in data_col:
                 if (cell.value == None):
