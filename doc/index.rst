@@ -13,6 +13,8 @@ Contents:
    :numbered:
 
    bid_bim_nbd_release/index
+   bid_bim_fret_nbd_release/index
+   bax_bax_fret_nbd_release/index
 
 Indices and tables
 ==================

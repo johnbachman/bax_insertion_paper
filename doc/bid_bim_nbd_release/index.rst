@@ -11,10 +11,11 @@ same liposome prep.
     :maxdepth: 1
 
     raw_data
+    derivatives
+    nbd_error_estimates
 
-bid_vs_bim_release
-derivatives
 fits/index
 evidence_table
 nbd_tb_correlation
-nbd_error_estimates
+
+

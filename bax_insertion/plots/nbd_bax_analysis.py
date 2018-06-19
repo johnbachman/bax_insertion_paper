@@ -11,9 +11,9 @@ import matplotlib.lines as mlines
 from bax_insertion.util import set_fig_params_for_publication, fontsize, \
                                format_axis, moving_average
 from bax_insertion.util.error_propagation import calc_ratio_mean_sd
+import bax_insertion.util.calculate_error_variance as cev
 
 #from bax_insertion.util import fitting
-#import bax_insertion.util.calculate_error_variance as cev
 #import bax_insertion.plots.titration_fits as tf
 #from bax_insertion.models.nbd.multiconf import Builder
 
