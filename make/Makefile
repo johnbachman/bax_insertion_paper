@@ -1,4 +1,4 @@
-CODEDIR := ../tbidbaxlipo
+CODEDIR := ../bax_insertion
 PLOTSDIR := $(CODEDIR)/plots
 DATADIR := $(CODEDIR)/data
 NBD_MCMC_DIR := $(PLOTSDIR)/bid_bim_nbd_release/mcmc
@@ -16,7 +16,6 @@ BAX_FRET_DATA := $(DATADIR)/2016\ -\ Bax-Bax\ FRET\ dataset.xlsx \
                  $(DATADIR)/parse_bax_bax_fret_nbd_release.py
 x140430 := $(CODEDIR)/plots/x140430_Bid_Bax_FRET/mcmc
 
-PQUEUE := parallel
 # md5 sum program to use (md5 on mac, md5sum on Linux)
 MD5 := $(MD5_NAME)
 
@@ -58,13 +57,13 @@ FORCE:
 # Running this script generates both the dependency list and the .yaml files
 # specifying the fit parameters for each individual model
 %.deps.txt: $(call to-md5, %.fit.ensemble)
-	python -m tbidbaxlipo.pt.generate_model_ensemble_fit_files $(call from-md5, $<)
+	python -m bax_insertion.pt.generate_model_ensemble_fit_files $(call from-md5, $<)
 
 # In this case, we know that the .fit file exists, since it has been
 # regenerated in the step that regenerated the dependency file. What
 # we care about is whether the hash is any different.
 %.mcmc: $(call to-md5, %.fit)
-	qsub -b y -cwd -V -o $(call from-md5, $<).out -e $(call from-md5, $<).err python -u $(CODEDIR)/pt/run_pt.py $(call from-md5, $<) 1 $(call from-md5, $<).pos nompi
+	#qsub -b y -cwd -V -o $(call from-md5, $<).out -e $(call from-md5, $<).err python -u $(CODEDIR)/pt/run_pt.py $(call from-md5, $<) 1 $(call from-md5, $<).pos nompi
 
 # Don't delete the .md5 files! Without this rule they are treated as
 # intermediates and deleted.
@@ -185,11 +184,11 @@ fret_nbd_release_all_fits: \
 
 data2_fit_plots/pt_data2_fret_Bid_54_3confs_fits.pdf: \
     $(PLOTSDIR)/bid_bim_fret_nbd_release/plot_all_fret_fits.py
-	python -u -m tbidbaxlipo.plots.bid_bim_fret_nbd_release.plot_all_fret_fits fret_mcmc
+	python -u -m bax_insertion.plots.bid_bim_fret_nbd_release.plot_all_fret_fits fret_mcmc
 
 data2_fit_plots_norm/pt_data2_fret_norm_Bid_54_3confs_fits.pdf: \
     $(PLOTSDIR)/bid_bim_fret_nbd_release/plot_all_fret_fits.py
-	python -u -m tbidbaxlipo.plots.bid_bim_fret_nbd_release.plot_all_fret_fits fret_mcmc_norm
+	python -u -m bax_insertion.plots.bid_bim_fret_nbd_release.plot_all_fret_fits fret_mcmc_norm
 
 # -- Bax-Bax FRET data (141203) ------------------------------------------
 bax_bax_fret: 141203_example_nbd_fret_fits.pdf
@@ -210,39 +209,39 @@ bax_fret_nbd_release_all_fits: \
 
 data3_fit_plots/pt_data3_fret_Bid_54_3confs_fits.pdf: \
     $(PLOTSDIR)/bax_bax_fret_nbd_release/plot_all_fret_fits.py
-	python -u -m tbidbaxlipo.plots.bax_bax_fret_nbd_release.plot_all_fret_fits fret_mcmc
+	python -u -m bax_insertion.plots.bax_bax_fret_nbd_release.plot_all_fret_fits fret_mcmc
 
 data3_fit_plots_norm/pt_data3_fret_norm_Bid_54_3confs_fits.pdf: \
     $(PLOTSDIR)/bax_bax_fret_nbd_release/plot_all_fret_fits.py
-	python -u -m tbidbaxlipo.plots.bax_bax_fret_nbd_release.plot_all_fret_fits fret_mcmc_norm
+	python -u -m bax_insertion.plots.bax_bax_fret_nbd_release.plot_all_fret_fits fret_mcmc_norm
 
 # --- Normalized release endpoint data for release, dataset 1 ---
 data1_release_endpt_norm.pdf: \
         $(PLOTSDIR)/nbd_bax_analysis.py \
         $(PLOTSDIR)/bid_bim_nbd_release/plots.py \
         $(NBD_DATA)
-	python -u -m tbidbaxlipo.plots.bid_bim_nbd_release.plots release_endpoint_norm $(basename $@)
+	python -u -m bax_insertion.plots.bid_bim_nbd_release.plots release_endpoint_norm $(basename $@)
 
 # --- Raw release endpoint data for release, dataset 1 ---
 data1_release_endpt_no_norm.pdf: \
         $(PLOTSDIR)/nbd_bax_analysis.py \
         $(PLOTSDIR)/bid_bim_nbd_release/plots.py \
         $(NBD_DATA)
-	python -m tbidbaxlipo.plots.bid_bim_nbd_release.plots release_endpoint_no_norm $(basename $@)
+	python -m bax_insertion.plots.bid_bim_nbd_release.plots release_endpoint_no_norm $(basename $@)
 
 # --- NBD endpoints, dataset 1, normalized to F/F0 ---
 data1_nbd_endpt_norm.pdf: \
         $(PLOTSDIR)/nbd_bax_analysis.py \
         $(PLOTSDIR)/bid_bim_nbd_release/plots.py \
         $(NBD_DATA)
-	python -m tbidbaxlipo.plots.bid_bim_nbd_release.plots nbd_endpoint_norm $(basename $@)
+	python -m bax_insertion.plots.bid_bim_nbd_release.plots nbd_endpoint_norm $(basename $@)
 
 # --- NBD endpoints, dataset 1, no normalization (raw values) ---
 data1_nbd_endpt_no_norm.pdf: \
         $(PLOTSDIR)/nbd_bax_analysis.py \
         $(PLOTSDIR)/bid_bim_nbd_release/plots.py \
         $(NBD_DATA)
-	python -m tbidbaxlipo.plots.bid_bim_nbd_release.plots nbd_endpoint_no_norm $(basename $@)
+	python -m bax_insertion.plots.bid_bim_nbd_release.plots nbd_endpoint_no_norm $(basename $@)
 
 # NBD/release, initial rates
 # Building this target creates four files:
@@ -254,38 +253,38 @@ data1_init_nbd_bar.pdf: \
         $(PLOTSDIR)/nbd_bax_analysis.py \
         $(PLOTSDIR)/bid_bim_nbd_release/plots.py \
         $(NBD_DATA)
-	python -m tbidbaxlipo.plots.bid_bim_nbd_release.plots initial_rate_samples data1
+	python -m bax_insertion.plots.bid_bim_nbd_release.plots initial_rate_samples data1
 
 data1_nbd_example_curves.pdf: \
         $(PLOTSDIR)/bid_bim_nbd_release/plot_example_curves.py \
         $(NBD_DATA)
-	python -m tbidbaxlipo.plots.bid_bim_nbd_release.plot_example_curves
+	python -m bax_insertion.plots.bid_bim_nbd_release.plot_example_curves
 
 data1_release_peak_times.csv: \
         $(PLOTSDIR)/nbd_bax_analysis.py \
         $(PLOTSDIR)/bid_bim_nbd_release/plots.py \
         $(NBD_DATA)
-	python -m tbidbaxlipo.plots.bid_bim_nbd_release.plots calc_release_peaks
+	python -m bax_insertion.plots.bid_bim_nbd_release.plots calc_release_peaks
 
 data1_derivatives_Bid_15_r1.pdf: \
         $(PLOTSDIR)/nbd_bax_analysis.py \
         $(PLOTSDIR)/bid_bim_nbd_release/plots.py \
         $(NBD_DATA)
-	python -m tbidbaxlipo.plots.bid_bim_nbd_release.plots example_derivatives
+	python -m bax_insertion.plots.bid_bim_nbd_release.plots example_derivatives
 
 data1_evidence_2confs.pdf: \
         $(PLOTSDIR)/nbd_bax_analysis.py \
         $(PLOTSDIR)/bid_bim_nbd_release/plots.py \
         $(PLOTSDIR)/bid_bim_nbd_release/plot_bf_values.py \
         $(NBD_DATA)
-	python -m tbidbaxlipo.plots.bid_bim_nbd_release.plots evidence
+	python -m bax_insertion.plots.bid_bim_nbd_release.plots evidence
 
 data1_Bid_k1k2_densities.pdf: \
         $(PLOTSDIR)/bid_bim_nbd_release/plot_k1_k2_dists.py \
         $(PLOTSDIR)/bid_bim_nbd_release/process_3conf_mcmc.py \
         $(NBD_MCMC_DIR)/Bid_k1_density_mx.txt \
         $(NBD_MCMC_DIR)/Bid_k2_density_mx.txt
-	python -m tbidbaxlipo.plots.bid_bim_nbd_release.plot_k1_k2_dists plot k1k2 \
+	python -m bax_insertion.plots.bid_bim_nbd_release.plot_k1_k2_dists plot k1k2 \
 		$(NBD_MCMC_DIR)/Bid_k1_density_mx.txt \
 		$(NBD_MCMC_DIR)/Bid_k2_density_mx.txt \
 		data1_Bid_k1k2_densities
@@ -295,7 +294,7 @@ data1_Bid_c1c2_densities.pdf: \
         $(PLOTSDIR)/bid_bim_nbd_release/process_3conf_mcmc.py \
         $(NBD_MCMC_DIR)/Bid_c1_density_mx.txt \
         $(NBD_MCMC_DIR)/Bid_c2_density_mx.txt
-	python -m tbidbaxlipo.plots.bid_bim_nbd_release.plot_k1_k2_dists plot c1c2 \
+	python -m bax_insertion.plots.bid_bim_nbd_release.plot_k1_k2_dists plot c1c2 \
 		$(NBD_MCMC_DIR)/Bid_c1_density_mx.txt \
 		$(NBD_MCMC_DIR)/Bid_c2_density_mx.txt \
 		data1_Bid_c1c2_densities
@@ -305,7 +304,7 @@ data1_Bim_k1k2_densities.pdf: \
         $(PLOTSDIR)/bid_bim_nbd_release/process_3conf_mcmc.py \
         $(NBD_MCMC_DIR)/Bim_k1_density_mx.txt \
         $(NBD_MCMC_DIR)/Bim_k2_density_mx.txt
-	python -m tbidbaxlipo.plots.bid_bim_nbd_release.plot_k1_k2_dists plot k1k2 \
+	python -m bax_insertion.plots.bid_bim_nbd_release.plot_k1_k2_dists plot k1k2 \
 		$(NBD_MCMC_DIR)/Bim_k1_density_mx.txt \
 		$(NBD_MCMC_DIR)/Bim_k2_density_mx.txt \
 		data1_Bim_k1k2_densities
@@ -315,7 +314,7 @@ data1_Bim_c1c2_densities.pdf: \
         $(PLOTSDIR)/bid_bim_nbd_release/process_3conf_mcmc.py \
         $(NBD_MCMC_DIR)/Bim_c1_density_mx.txt \
         $(NBD_MCMC_DIR)/Bim_c2_density_mx.txt
-	python -m tbidbaxlipo.plots.bid_bim_nbd_release.plot_k1_k2_dists plot c1c2 \
+	python -m bax_insertion.plots.bid_bim_nbd_release.plot_k1_k2_dists plot c1c2 \
 		$(NBD_MCMC_DIR)/Bim_c1_density_mx.txt \
 		$(NBD_MCMC_DIR)/Bim_c2_density_mx.txt \
 		data1_Bim_c1c2_densities
@@ -326,28 +325,28 @@ data2_release_endpt_norm.pdf: \
         $(PLOTSDIR)/nbd_bax_analysis.py \
         $(PLOTSDIR)/bid_bim_fret_nbd_release/plots.py \
         $(NBD_FRET_DATA)
-	python -m tbidbaxlipo.plots.bid_bim_fret_nbd_release.plots release_endpoint_norm $(basename $@)
+	python -m bax_insertion.plots.bid_bim_fret_nbd_release.plots release_endpoint_norm $(basename $@)
 
 # --- Raw release endpoint data for release, dataset 2 ---
 data2_release_endpt_no_norm.pdf: \
         $(PLOTSDIR)/nbd_bax_analysis.py \
         $(PLOTSDIR)/bid_bim_fret_nbd_release/plots.py \
         $(NBD_FRET_DATA)
-	python -m tbidbaxlipo.plots.bid_bim_fret_nbd_release.plots release_endpoint_no_norm $(basename $@)
+	python -m bax_insertion.plots.bid_bim_fret_nbd_release.plots release_endpoint_no_norm $(basename $@)
 
 # --- NBD endpoints, dataset 2, normalized to F/F0 ---
 data2_nbd_endpt_norm.pdf: \
         $(PLOTSDIR)/nbd_bax_analysis.py \
         $(PLOTSDIR)/bid_bim_fret_nbd_release/plots.py \
         $(NBD_FRET_DATA)
-	python -m tbidbaxlipo.plots.bid_bim_fret_nbd_release.plots nbd_endpoint_norm $(basename $@)
+	python -m bax_insertion.plots.bid_bim_fret_nbd_release.plots nbd_endpoint_norm $(basename $@)
 
 # --- NBD endpoints, dataset 2, no normalization (raw values) ---
 data2_nbd_endpt_no_norm.pdf: \
         $(PLOTSDIR)/nbd_bax_analysis.py \
         $(PLOTSDIR)/bid_bim_fret_nbd_release/plots.py \
         $(NBD_FRET_DATA)
-	python -m tbidbaxlipo.plots.bid_bim_fret_nbd_release.plots nbd_endpoint_no_norm $(basename $@)
+	python -m bax_insertion.plots.bid_bim_fret_nbd_release.plots nbd_endpoint_no_norm $(basename $@)
 
 # FRET/NBD/release, initial rates
 # Building this target creates four files:
@@ -359,31 +358,31 @@ data2_init_nbd_bar.pdf: \
         $(PLOTSDIR)/nbd_bax_analysis.py \
         $(PLOTSDIR)/bid_bim_fret_nbd_release/plots.py \
         $(NBD_FRET_DATA)
-	python -m tbidbaxlipo.plots.bid_bim_fret_nbd_release.plots initial_rate_samples data2
+	python -m bax_insertion.plots.bid_bim_fret_nbd_release.plots initial_rate_samples data2
 
 data2_fret_endpt.pdf: \
         $(PLOTSDIR)/nbd_bax_analysis.py \
         $(PLOTSDIR)/bid_bim_fret_nbd_release/plots.py \
         $(PLOTSDIR)/bid_bim_fret_nbd_release/preprocess_data.py \
         $(NBD_FRET_DATA)
-	python -m tbidbaxlipo.plots.bid_bim_fret_nbd_release.plots fret_endpoint $(basename $@)
+	python -m bax_insertion.plots.bid_bim_fret_nbd_release.plots fret_endpoint $(basename $@)
 
 data2_example_curves.pdf: \
         $(PLOTSDIR)/bid_bim_fret_nbd_release/plot_example_fret_curves.py \
         $(NBD_FRET_DATA)
-	python -m tbidbaxlipo.plots.bid_bim_fret_nbd_release.plot_example_fret_curves
+	python -m bax_insertion.plots.bid_bim_fret_nbd_release.plot_example_fret_curves
 
 data2_example_nbd_fret_fits.pdf: \
         $(PLOTSDIR)/bid_bim_fret_nbd_release/plot_example_fret_fits.py \
         $(NBD_FRET_DATA)
-	python -m tbidbaxlipo.plots.bid_bim_fret_nbd_release.plot_example_fret_fits
+	python -m bax_insertion.plots.bid_bim_fret_nbd_release.plot_example_fret_fits
 
 data2_delta_fret.pdf: \
         $(PLOTSDIR)/nbd_bax_analysis.py \
         $(PLOTSDIR)/bid_bim_fret_nbd_release/plot_delta_fret.py \
         $(PLOTSDIR)/bid_bim_fret_nbd_release/preprocess_data.py \
         $(NBD_FRET_DATA)
-	python -m tbidbaxlipo.plots.bid_bim_fret_nbd_release.plot_delta_fret $(basename $@)
+	python -m bax_insertion.plots.bid_bim_fret_nbd_release.plot_delta_fret $(basename $@)
 
 
 # ---------------------------------------------------------------
@@ -391,12 +390,12 @@ data2_delta_fret.pdf: \
 nbd_labeling_ratios_table: \
         $(PLOTSDIR)/bid_bim_nbd_release/nbd_labeling_ratios_table.py \
         $(NBD_DATA)
-	python -m tbidbaxlipo.plots.bid_bim_nbd_release.nbd_labeling_ratios_table \
+	python -m bax_insertion.plots.bid_bim_nbd_release.nbd_labeling_ratios_table \
                       nbd_labeling_ratios_table.csv
 
 141203_example_nbd_fret_fits.pdf: \
     $(PLOTSDIR)/x141203_Bax_Bax_FRET/plot_example_fret_fits.py
-	python -m tbidbaxlipo.plots.x141203_Bax_Bax_FRET.plot_example_fret_fits
+	python -m bax_insertion.plots.x141203_Bax_Bax_FRET.plot_example_fret_fits
 
 
 # ---------------------------------------------------------------
@@ -407,21 +406,21 @@ nbd_labeling_ratios_table: \
 #        $(PLOTSDIR)/nbd_bax_analysis.py \
 #        $(PLOTSDIR)/bax_bax_fret_nbd_release/plots.py \
 #        $(BAX_FRET_DATA)
-#	python -m tbidbaxlipo.plots.bax_bax_fret_nbd_release.plots release_endpoint_norm $(basename $@)
+#	python -m bax_insertion.plots.bax_bax_fret_nbd_release.plots release_endpoint_norm $(basename $@)
 
 # --- Raw release endpoint data for release, dataset 3 ---
 data3_release_endpt_no_norm.pdf: \
         $(PLOTSDIR)/nbd_bax_analysis.py \
         $(PLOTSDIR)/bax_bax_fret_nbd_release/plots.py \
         $(BAX_FRET_DATA)
-	python -m tbidbaxlipo.plots.bax_bax_fret_nbd_release.plots release_endpoint_no_norm $(basename $@)
+	python -m bax_insertion.plots.bax_bax_fret_nbd_release.plots release_endpoint_no_norm $(basename $@)
 
 # --- NBD endpoints, dataset 3, normalized to F/F0 ---
 data3_nbd_endpt_norm.pdf: \
         $(PLOTSDIR)/nbd_bax_analysis.py \
         $(PLOTSDIR)/bax_bax_fret_nbd_release/plots.py \
         $(BAX_FRET_DATA)
-	python -m tbidbaxlipo.plots.bax_bax_fret_nbd_release.plots nbd_endpoint_norm $(basename $@)
+	python -m bax_insertion.plots.bax_bax_fret_nbd_release.plots nbd_endpoint_norm $(basename $@)
 
 # --- NBD endpoints, dataset 3, no normalization (raw values) ---
 # Not done, because data is already normalized in the spreadsheet
@@ -429,24 +428,24 @@ data3_nbd_endpt_norm.pdf: \
 #        $(PLOTSDIR)/nbd_bax_analysis.py \
 #        $(PLOTSDIR)/bax_bax_fret_nbd_release/plots.py \
 #        $(BAX_FRET_DATA)
-#	python -m tbidbaxlipo.plots.bax_bax_fret_nbd_release.plots nbd_endpoint_no_norm $(basename $@)
+#	python -m bax_insertion.plots.bax_bax_fret_nbd_release.plots nbd_endpoint_no_norm $(basename $@)
 
 data3_fret_endpt.pdf: \
         $(PLOTSDIR)/nbd_bax_analysis.py \
         $(PLOTSDIR)/bax_bax_fret_nbd_release/plots.py \
         $(PLOTSDIR)/bax_bax_fret_nbd_release/preprocess_data.py \
         $(BAX_FRET_DATA)
-	python -m tbidbaxlipo.plots.bax_bax_fret_nbd_release.plots fret_endpoint $(basename $@)
+	python -m bax_insertion.plots.bax_bax_fret_nbd_release.plots fret_endpoint $(basename $@)
 
 data3_example_curves.pdf: \
         $(PLOTSDIR)/bax_bax_fret_nbd_release/plot_example_fret_curves.py \
         $(BAX_FRET_DATA)
-	python -m tbidbaxlipo.plots.bax_bax_fret_nbd_release.plot_example_fret_curves
+	python -m bax_insertion.plots.bax_bax_fret_nbd_release.plot_example_fret_curves
 
 data3_example_nbd_fret_fits.pdf: \
         $(PLOTSDIR)/bax_bax_fret_nbd_release/plot_example_fret_fits.py \
         $(NBD_FRET_DATA)
-	python -m tbidbaxlipo.plots.bax_bax_fret_nbd_release.plot_example_fret_fits
+	python -m bax_insertion.plots.bax_bax_fret_nbd_release.plot_example_fret_fits
 
 
 # FRET/NBD/release, initial rates
@@ -459,19 +458,19 @@ data3_example_nbd_fret_fits.pdf: \
 #        $(PLOTSDIR)/nbd_bax_analysis.py \
 #        $(PLOTSDIR)/bax_bax_fret_nbd_release/plots.py \
 #        $(BAX_FRET_DATA)
-#	python -m tbidbaxlipo.plots.bax_bax_fret_nbd_release.plots initial_rate_samples data3
+#	python -m bax_insertion.plots.bax_bax_fret_nbd_release.plots initial_rate_samples data3
 
 
 #data3_example_nbd_fret_fits.pdf: \
 #        $(PLOTSDIR)/bax_bax_fret_nbd_release/plot_example_fret_fits.py \
 #        $(BAX_FRET_DATA)
-#	python -m tbidbaxlipo.plots.bax_bax_fret_nbd_release.plot_example_fret_fits
+#	python -m bax_insertion.plots.bax_bax_fret_nbd_release.plot_example_fret_fits
 #
 #data3_delta_fret.pdf: \
 #        $(PLOTSDIR)/nbd_bax_analysis.py \
 #        $(PLOTSDIR)/bax_bax_fret_nbd_release/plot_delta_fret.py \
 #        $(PLOTSDIR)/bax_bax_fret_nbd_release/preprocess_data.py \
 #        $(BAX_FRET_DATA)
-#	python -m tbidbaxlipo.plots.bax_bax_fret_nbd_release.plot_delta_fret $(basename $@)
+#	python -m bax_insertion.plots.bax_bax_fret_nbd_release.plot_delta_fret $(basename $@)
 
 
