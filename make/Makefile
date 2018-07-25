@@ -60,8 +60,8 @@ FORCE:
 # regenerated in the step that regenerated the dependency file. What
 # we care about is whether the hash is any different.
 %.mcmc: $(call to-md5, %.fit)
-	python -u $(CODEDIR)/pt/run_pt.py $(call from-md5, $<) 1 $(call from-md5, $<).pos nompi
-	#qsub -b y -cwd -V -o $(call from-md5, $<).out -e $(call from-md5, $<).err python -u $(CODEDIR)/pt/run_pt.py $(call from-md5, $<) 1 $(call from-md5, $<).pos nompi
+	qsub -b y -cwd -V -o $(call from-md5, $<).out -e $(call from-md5, $<).err python -u $(CODEDIR)/pt/run_pt.py $(call from-md5, $<) 1 $(call from-md5, $<).pos nompi
+	#python -u $(CODEDIR)/pt/run_pt.py $(call from-md5, $<) 1 $(call from-md5, $<).pos nompi
 
 # Don't delete the .md5 files! Without this rule they are treated as
 # intermediates and deleted.
