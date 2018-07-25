@@ -31,7 +31,7 @@ dependencies_list = []
 # Iterate over the activators
 for activator in ['Bid']:
     # Iterate over the NBD residues
-    for nbd_residue in ['126']:
+    for nbd_residue in ['126', '175']:
         # Skip the wild type curves since there is no NBD trace
         if nbd_residue == 'WT':
             continue
