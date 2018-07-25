@@ -1,3 +1,8 @@
+*.fit
+*.ensemble
+*.deps.txt
+*.md5
+
 # Density data for stoplight plots
 *_mx.txt
 doc/_build_old
