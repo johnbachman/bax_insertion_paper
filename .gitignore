@@ -1,3 +1,4 @@
+*.pos
 *.fit
 *.ensemble
 *.deps.txt
