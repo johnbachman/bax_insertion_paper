@@ -1,12 +1,12 @@
 import os
 import sys
 import yaml
-from bax_insertion.data.parse_bax_bax_fret_nbd_release import nbd_residues
+from bax_insertion.data.parse_bax_bax_fret_nbd_release import nbd_residues, \
+                                                              activators
 
 # Arguments shared across all fits
 args = {
     'model': {
-        #'multiconf_nbd_fret': [[3, 'rev'], [4, 'rev']], # 2, 3, 4
         'multiconf_nbd_fret': [3],
         'normalized_nbd_data': [True],
         'scaling_prior_type': ['normal']},
@@ -31,7 +31,7 @@ dependencies_list = []
 # Iterate over the activators
 for activator in ['Bid']:
     # Iterate over the NBD residues
-    for nbd_residue in nbd_residues:
+    for nbd_residue in ['126']:
         # Skip the wild type curves since there is no NBD trace
         if nbd_residue == 'WT':
             continue
@@ -41,7 +41,7 @@ for activator in ['Bid']:
             data_args = {
               'initial_condition_var': None,
               'module':
-                  'bax_insertion.plots.bax_bax_fret_nbd_release.preprocess_data'}
+                 'bax_insertion.plots.bax_bax_fret_nbd_release.preprocess_data'}
             data_args['time_var'] = 'time_%s_%s_r%s' % \
                                     (activator, nbd_residue, rep_num)
             data_args['data_var'] = 'data_%s_%s_r%s' % \

@@ -1,7 +1,8 @@
 import os
 import sys
 import yaml
-from bax_insertion.data.parse_bid_bim_fret_nbd_release import nbd_residues
+from bax_insertion.data.parse_bid_bim_fret_nbd_release import nbd_residues, \
+                                                              activators
 
 residues_to_fit = [n for n in nbd_residues
                    if n not in ['15', '62', '184']]
@@ -32,7 +33,7 @@ output_filename_pattern = output_target_pattern + '.fit.ensemble'
 dependencies_list = []
 
 # Iterate over the activators
-for activator in ['Bid', 'Bim']:
+for activator in activators:
     # Iterate over the NBD residues
     for nbd_residue in residues_to_fit:
         # Skip the wild type curves since there is no NBD trace
@@ -44,7 +45,7 @@ for activator in ['Bid', 'Bim']:
             data_args = {
               'initial_condition_var': None,
               'module':
-                   'bax_insertion.plots.bid_bim_fret_nbd_release.preprocess_data'}
+                'bax_insertion.plots.bid_bim_fret_nbd_release.preprocess_data'}
             data_args['time_var'] = 'time_%s_%s_r%s' % \
                                     (activator, nbd_residue, rep_num)
             data_args['data_var'] = 'data_%s_%s_r%s' % \

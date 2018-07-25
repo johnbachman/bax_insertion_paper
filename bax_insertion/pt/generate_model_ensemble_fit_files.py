@@ -1,10 +1,9 @@
-import yaml
-from itertools import product, izip
-from bax_insertion.models import one_cpt
-from bax_insertion.models.nbd import multiconf
-from copy import copy
-import sys
 import os
+import sys
+from copy import copy
+from itertools import product, izip
+import yaml
+from bax_insertion.models import multiconf
 
 def model_product(model_dict):
     """A function to take the cross product of all feature implementations and
@@ -76,6 +75,7 @@ def generate_files(args, basename):
                 continue
             # It doesn't matter which builder is instantiated here because
             # the build_model_from_dict function is in the superclass, core.
+            from bax_insertion.models import one_cpt
             bd = one_cpt.Builder()
             bd.build_model_from_dict(m)
             model_name = bd.model.name

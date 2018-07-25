@@ -8,12 +8,9 @@ NBD_FRET_DUAL_MCMC_DIR := $(PLOTSDIR)/bid_bim_fret_nbd_release/fret_mcmc
 NBD_FRET_DUAL_MCMC_NORM_DIR := $(PLOTSDIR)/bid_bim_fret_nbd_release/fret_mcmc_norm
 BAX_NBD_FRET_DUAL_MCMC_DIR := $(PLOTSDIR)/bax_bax_fret_nbd_release/fret_mcmc
 BAX_NBD_FRET_DUAL_MCMC_NORM_DIR := $(PLOTSDIR)/bax_bax_fret_nbd_release/fret_mcmc_norm
-NBD_DATA := $(DATADIR)/Compiled\ Release\ percentages\ and\ NBD\ F-F0.xlsx \
-            $(DATADIR)/parse_bid_bim_nbd_release.py
-NBD_FRET_DATA := $(DATADIR)/2015-02-27\ -\ Bid-Bim\ FRET\ with\ Bax\ NBD\ mutants\ in\ Tb-DPA\ Liposomes\ compiled\ reps+WT\ Bax.xlsx \
-                 $(DATADIR)/parse_bid_bim_fret_nbd_release.py
-BAX_FRET_DATA := $(DATADIR)/2016\ -\ Bax-Bax\ FRET\ dataset.xlsx \
-                 $(DATADIR)/parse_bax_bax_fret_nbd_release.py
+NBD_DATA := $(DATADIR)/KD1_dataset.xlsx $(DATADIR)/parse_bid_bim_nbd_release.py
+NBD_FRET_DATA := $(DATADIR)/KD2_dataset.xlsx $(DATADIR)/parse_bid_bim_fret_nbd_release.py
+BAX_FRET_DATA := $(DATADIR)/KD3_dataset.xlsx $(DATADIR)/parse_bax_bax_fret_nbd_release.py
 x140430 := $(CODEDIR)/plots/x140430_Bid_Bax_FRET/mcmc
 
 # md5 sum program to use (md5 on mac, md5sum on Linux)
@@ -52,7 +49,7 @@ from-md5 = $(patsubst %.md5,%,$1)
 # Dummy target so the .md5 step is always run
 FORCE:
 
-.PHONY: clean clean_pt deploy nbd_release fret_nbd_release bax_bax_fret
+.PHONY: clean deploy nbd_release fret_nbd_release bax_bax_fret
 
 # Running this script generates both the dependency list and the .yaml files
 # specifying the fit parameters for each individual model
@@ -63,6 +60,7 @@ FORCE:
 # regenerated in the step that regenerated the dependency file. What
 # we care about is whether the hash is any different.
 %.mcmc: $(call to-md5, %.fit)
+	python -u $(CODEDIR)/pt/run_pt.py $(call from-md5, $<) 1 $(call from-md5, $<).pos nompi
 	#qsub -b y -cwd -V -o $(call from-md5, $<).out -e $(call from-md5, $<).err python -u $(CODEDIR)/pt/run_pt.py $(call from-md5, $<) 1 $(call from-md5, $<).pos nompi
 
 # Don't delete the .md5 files! Without this rule they are treated as
@@ -70,14 +68,14 @@ FORCE:
 .PRECIOUS: %.md5
 
 # -- MCMC Fitting for 140430 Bid/Bax FRET pilot data -------------------
-pt_140430_36C: $(x140430)/pt_140430_36C.deps.txt
--include $(x140430)/pt_140430_36C.deps.txt
+#pt_140430_36C: $(x140430)/pt_140430_36C.deps.txt
+#-include $(x140430)/pt_140430_36C.deps.txt
 
-pt_140430_68C: $(x140430)/pt_140430_68C.deps.txt
--include $(x140430)/pt_140430_68C.deps.txt
+#pt_140430_68C: $(x140430)/pt_140430_68C.deps.txt
+#-include $(x140430)/pt_140430_68C.deps.txt
 
-pt_140430_126C: $(x140430)/pt_140430_126C.deps.txt
--include $(x140430)/pt_140430_126C.deps.txt
+#pt_140430_126C: $(x140430)/pt_140430_126C.deps.txt
+#-include $(x140430)/pt_140430_126C.deps.txt
 
 # -- MCMC Fitting for Dataset 1, complete set of NBD-Bax trajectories --
 pt_data1: pt_data1_deps

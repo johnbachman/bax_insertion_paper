@@ -1,7 +1,8 @@
 import os
 import sys
 import yaml
-from bax_insertion.data.parse_bid_bim_nbd_release import nbd_residues
+from bax_insertion.data.parse_bid_bim_nbd_release import nbd_residues, \
+                                                         activators
 
 # Arguments shared across all fits
 args = {
@@ -27,9 +28,9 @@ output_filename_pattern = output_target_pattern + '.fit.ensemble'
 dependencies_list = []
 
 # Iterate over the activators
-for activator in ['Bid']:
+for activator in activators:
     # Iterate over the NBD residues
-    for nbd_residue in ['54']:
+    for nbd_residue in nbd_residues:
         # Skip the wild type curves since there is no NBD trace
         if nbd_residue == 'WT':
             continue
