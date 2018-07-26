@@ -1,13 +1,13 @@
+import os
+import sys
+import cPickle
+import itertools
+import numpy as np
+from matplotlib import pyplot as plt
 from bax_insertion.util import set_fig_params_for_publication, format_axis, \
                              fontsize
 from bax_insertion.plots.bax_bax_fret_nbd_release.preprocess_data import \
         nbd_residues, df_pre as df
-import numpy as np
-from matplotlib import pyplot as plt
-import itertools
-import cPickle
-import sys
-import os
 
 set_fig_params_for_publication()
 
@@ -32,7 +32,7 @@ if norm:
 
 act = 'Bid'
 
-for res in nbd_residues:
+for res in ['126', '175']:
     fig, axarr = plt.subplots(2, 3, sharex=True, figsize=(4.5, 4.5), dpi=300)
     for col_ix, rep in enumerate((1, 2, 3)):
         if norm:
