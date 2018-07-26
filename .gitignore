@@ -5,6 +5,32 @@ make/*.png
 *.ensemble
 *.deps.txt
 *.md5
+*.k1_hist
+*.k2_hist
+*.*_scaling
+*.c1_peak
+*_mx.txt
+*.evi
+*.lhs
+*.detfit
+*.pdf
+*.mcmc
+*.deps.txt
+*.fit
+*.net
+*.gdat
+*.cdat
+*.bngl
+*.log
+*.tsv
+*.rep
+*.html
+*.swp
+*.gv
+*.dot
+*.out
+*.err
+*.ka
 
 # Density data for stoplight plots
 *_mx.txt
