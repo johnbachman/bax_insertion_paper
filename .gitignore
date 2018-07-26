@@ -1,5 +1,5 @@
-make/*.pdf
-make/*.png
+*.png
+*.pdf
 *.pos
 *.fit
 *.ensemble
@@ -31,6 +31,7 @@ make/*.png
 *.out
 *.err
 *.ka
+justin_table*.csv
 
 # Density data for stoplight plots
 *_mx.txt
