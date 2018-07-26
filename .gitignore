@@ -1,3 +1,5 @@
+make/*.pdf
+make/*.png
 *.pos
 *.fit
 *.ensemble
