@@ -66,7 +66,22 @@ if __name__ == '__main__':
 
     # Get the curve data for each file
     curve_data = []
-    for filename in filelist[6:7]:
+    for filename in filelist[0:2]:
         cd = get_curve_data(filename)
         curve_data.append(cd)
+
+    # Prepare data rows for export
+    rows = []
+    labels = {
+        'pt_data1_newpr': 'KD1',
+        'pt_data2_fret_norm': 'KD2',
+        'pt_data3_fret_norm': 'KD3',
+    }
+    for prefix, residue, repnum, param_tuples in curve_data:
+        for p_name, p_val in curve_data:
+            p_val_lin = 10**p_val
+            row = [labels[prefix], residue, repnum, p_name, p_val_lin]
+    with open('fig5_MAP_parameter_table.csv', 'w') as f:
+        csvwriter = csv.writer(f, delimiter=',')
+        csvwriter.writerows(rows)
 
