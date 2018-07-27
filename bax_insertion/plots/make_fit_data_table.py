@@ -82,6 +82,7 @@ if __name__ == '__main__':
         for p_name, p_val in param_tuples:
             p_val_lin = 10**p_val
             row = [labels[prefix], residue, repnum, p_name, p_val_lin]
+            rows.append(row)
     with open('fig5_MAP_parameter_table.csv', 'w') as f:
         csvwriter = csv.writer(f, delimiter=',')
         csvwriter.writerows(rows)
