@@ -67,12 +67,12 @@ if __name__ == '__main__':
 
     # Get the curve data for each file
     curve_data = []
-    for filename in filelist[0:2]:
+    for filename in filelist:
         cd = get_curve_data(filename)
         curve_data.append(cd)
 
     # Prepare data rows for export
-    rows = []
+    rows = [('Dataset', 'Residue', 'Rep', 'Parameter', 'Value')]
     labels = {
         'pt_data1_newpr': 'KD1',
         'pt_data2_fret_norm': 'KD2',
