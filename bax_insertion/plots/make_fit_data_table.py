@@ -2,6 +2,7 @@ import re
 import sys
 import pickle
 import os.path
+import numpy as np
 
 filelist = [
     'bid_bim_nbd_release/mcmc_norm_prior/pt_data1_newpr_Bid_NBD_3_r1_3confs.mcmc',
@@ -37,6 +38,7 @@ def get_curve_data(filename):
     (prefix, residue, repnum) = m.groups()
     repnum = int(repnum)
     # Load the file
+    print("Loading %s" % filename)
     with open(filename, 'rb') as f:
         (gf, sampler) = pickle.load(f)
 
