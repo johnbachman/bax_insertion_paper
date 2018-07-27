@@ -35,7 +35,7 @@ def get_curve_data(filename):
     return (prefix, residue, repnum, param_tuples)
 
 if __name__ == '__main__':
-    #filelist = sys.argv[1:]
+    filelist = sys.argv[1:]
     missing_file = False
     for file in filelist:
         if not os.path.exists(file):
