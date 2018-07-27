@@ -1,5 +1,6 @@
 import re
 import sys
+import pickle
 import os.path
 
 filelist = [
@@ -60,7 +61,7 @@ if __name__ == '__main__':
 
     # Get the curve data for each file
     curve_data = []
-    for filename in filelist[0:1]:
+    for filename in filelist[6:7]:
         cd = get_curve_data(filename)
         curve_data.append(cd)
 
