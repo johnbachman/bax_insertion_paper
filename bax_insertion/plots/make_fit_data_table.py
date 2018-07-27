@@ -47,10 +47,12 @@ def get_curve_data(filename):
     maxp_ix = np.unravel_index(maxp_flat_ix,
                                sampler.lnprobability[0].shape)
     maxp = sampler.lnprobability[0][maxp_ix]
+    param_names = [p.name for p in gf.builder.estimate_params]
     maxp_params = sampler.chain[0, maxp_ix[0], maxp_ix[1]]
+    param_tuples = list(zip(param_names, maxp_params))
     # Store the tuple in a dict
     #file_dict[(prefix, residue, repnum)] = arr
-    return (prefix, residue, repnum, maxp_params)
+    return (prefix, residue, repnum, param_tuples)
 
 if __name__ == '__main__':
     #filelist = sys.argv[1:]
