@@ -16,7 +16,8 @@ x140430 := $(CODEDIR)/plots/x140430_Bid_Bax_FRET/mcmc
 # md5 sum program to use (md5 on mac, md5sum on Linux)
 MD5 := $(MD5_NAME)
 
-all: nbd_release fret_nbd_release bax_bax_fret nbd_labeling_ratios_table
+all: nbd_release fret_nbd_release bax_bax_fret nbd_labeling_ratios_table \
+     fig5_MAP_parameter_table.csv
 
 deploy:
 	rsync -av ./ ~/Dropbox/Bachman-Sorger\ Talks\ and\ Papers/Kale-Bachman\ Bax\ mutants/figures/panels
@@ -470,5 +471,27 @@ data3_example_nbd_fret_fits.pdf: \
 #        $(PLOTSDIR)/bax_bax_fret_nbd_release/preprocess_data.py \
 #        $(BAX_FRET_DATA)
 #	python -m bax_insertion.plots.bax_bax_fret_nbd_release.plot_delta_fret $(basename $@)
+
+# Build the spreadsheet of curve data to include in Figure 5b
+fig5_MAP_parameter_table.csv:
+	python -m bax_insertion.plots.make_fit_data_table \
+    $(NBD_MCMC_NORM_DIR)/pt_data1_newpr_Bid_NBD_3_r1_3confs.mcmc \
+    $(NBD_MCMC_NORM_DIR)/pt_data1_newpr_Bid_NBD_36_r1_3confs.mcmc \
+    $(NBD_MCMC_NORM_DIR)/pt_data1_newpr_Bid_NBD_54_r1_3confs.mcmc \
+    $(NBD_MCMC_NORM_DIR)/pt_data1_newpr_Bid_NBD_126_r1_3confs.mcmc \
+    $(NBD_MCMC_NORM_DIR)/pt_data1_newpr_Bid_NBD_138_r1_3confs.mcmc \
+    $(NBD_MCMC_NORM_DIR)/pt_data1_newpr_Bid_NBD_175_r1_3confs.mcmc \
+    $(NBD_FRET_DUAL_MCMC_NORM_DIR)/pt_data2_fret_norm_Bid_NBD_3_r1_3confs.mcmc \
+    $(NBD_FRET_DUAL_MCMC_NORM_DIR)/pt_data2_fret_norm_Bid_NBD_36_r1_3confs.mcmc \
+    $(NBD_FRET_DUAL_MCMC_NORM_DIR)/pt_data2_fret_norm_Bid_NBD_54_r1_3confs.mcmc \
+    $(NBD_FRET_DUAL_MCMC_NORM_DIR)/pt_data2_fret_norm_Bid_NBD_126_r1_3confs.mcmc \
+    $(NBD_FRET_DUAL_MCMC_NORM_DIR)/pt_data2_fret_norm_Bid_NBD_138_r1_3confs.mcmc \
+    $(NBD_FRET_DUAL_MCMC_NORM_DIR)/pt_data2_fret_norm_Bid_NBD_175_r1_3confs.mcmc \
+    $(BAX_NBD_FRET_DUAL_MCMC_NORM_DIR)/pt_data3_fret_norm_Bid_NBD_3_r1_3confs.mcmc \
+    $(BAX_NBD_FRET_DUAL_MCMC_NORM_DIR)/pt_data3_fret_norm_Bid_NBD_36_r1_3confs.mcmc \
+    $(BAX_NBD_FRET_DUAL_MCMC_NORM_DIR)/pt_data3_fret_norm_Bid_NBD_54_r1_3confs.mcmc \
+    $(BAX_NBD_FRET_DUAL_MCMC_NORM_DIR)/pt_data3_fret_norm_Bid_NBD_126_r1_3confs.mcmc \
+    $(BAX_NBD_FRET_DUAL_MCMC_NORM_DIR)/pt_data3_fret_norm_Bid_NBD_138_r1_3confs.mcmc \
+    $(BAX_NBD_FRET_DUAL_MCMC_NORM_DIR)/pt_data3_fret_norm_Bid_NBD_175_r1_3confs.mcmc
 
 

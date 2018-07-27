@@ -5,27 +5,6 @@ import pickle
 import os.path
 import numpy as np
 
-filelist = [
-    'bid_bim_nbd_release/mcmc_norm_prior/pt_data1_newpr_Bid_NBD_3_r1_3confs.mcmc',
-    'bid_bim_nbd_release/mcmc_norm_prior/pt_data1_newpr_Bid_NBD_36_r1_3confs.mcmc',
-    'bid_bim_nbd_release/mcmc_norm_prior/pt_data1_newpr_Bid_NBD_54_r1_3confs.mcmc',
-    'bid_bim_nbd_release/mcmc_norm_prior/pt_data1_newpr_Bid_NBD_126_r1_3confs.mcmc',
-    'bid_bim_nbd_release/mcmc_norm_prior/pt_data1_newpr_Bid_NBD_138_r1_3confs.mcmc',
-    'bid_bim_nbd_release/mcmc_norm_prior/pt_data1_newpr_Bid_NBD_175_r1_3confs.mcmc',
-    'bid_bim_fret_nbd_release/fret_mcmc_norm/pt_data2_fret_norm_Bid_NBD_3_r1_3confs.mcmc',
-    'bid_bim_fret_nbd_release/fret_mcmc_norm/pt_data2_fret_norm_Bid_NBD_36_r1_3confs.mcmc',
-    'bid_bim_fret_nbd_release/fret_mcmc_norm/pt_data2_fret_norm_Bid_NBD_54_r1_3confs.mcmc',
-    'bid_bim_fret_nbd_release/fret_mcmc_norm/pt_data2_fret_norm_Bid_NBD_126_r1_3confs.mcmc',
-    'bid_bim_fret_nbd_release/fret_mcmc_norm/pt_data2_fret_norm_Bid_NBD_138_r1_3confs.mcmc',
-    'bid_bim_fret_nbd_release/fret_mcmc_norm/pt_data2_fret_norm_Bid_NBD_175_r1_3confs.mcmc',
-    'bax_bax_fret_nbd_release/fret_mcmc_norm/pt_data3_fret_norm_Bid_NBD_3_r1_3confs.mcmc',
-    'bax_bax_fret_nbd_release/fret_mcmc_norm/pt_data3_fret_norm_Bid_NBD_36_r1_3confs.mcmc',
-    'bax_bax_fret_nbd_release/fret_mcmc_norm/pt_data3_fret_norm_Bid_NBD_54_r1_3confs.mcmc',
-    'bax_bax_fret_nbd_release/fret_mcmc_norm/pt_data3_fret_norm_Bid_NBD_126_r1_3confs.mcmc',
-    'bax_bax_fret_nbd_release/fret_mcmc_norm/pt_data3_fret_norm_Bid_NBD_138_r1_3confs.mcmc',
-    'bax_bax_fret_nbd_release/fret_mcmc_norm/pt_data3_fret_norm_Bid_NBD_175_r1_3confs.mcmc',
-    ]
-
 def get_curve_data(filename):
     # First, split off the dirname
     basename = os.path.basename(filename)
