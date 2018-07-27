@@ -78,7 +78,7 @@ if __name__ == '__main__':
         'pt_data3_fret_norm': 'KD3',
     }
     for prefix, residue, repnum, param_tuples in curve_data:
-        for p_name, p_val in curve_data:
+        for p_name, p_val in param_tuples:
             p_val_lin = 10**p_val
             row = [labels[prefix], residue, repnum, p_name, p_val_lin]
     with open('fig5_MAP_parameter_table.csv', 'w') as f:
