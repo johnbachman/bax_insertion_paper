@@ -10,12 +10,12 @@ def get_curve_data(filename):
     basename = os.path.basename(filename)
     # Next, split off the extension(s)
     basename = basename.split('.')[0]
-    pattern = re.compile('(\w+)_Bid_NBD_(\d+)_r(\d)_3confs')
+    pattern = re.compile('(\w+)_(\w+)_NBD_(\d+)_r(\d)_3confs')
     m = pattern.match(basename)
     if not m:
         raise Exception('Could not match filename %s' % basename)
     # Get the keys from the regex
-    (prefix, residue, repnum) = m.groups()
+    (prefix, activator, residue, repnum) = m.groups()
     repnum = int(repnum)
     # Load the file
     print("Loading %s" % filename)
@@ -32,7 +32,7 @@ def get_curve_data(filename):
     param_tuples = list(zip(param_names, maxp_params))
     # Store the tuple in a dict
     #file_dict[(prefix, residue, repnum)] = arr
-    return (prefix, residue, repnum, param_tuples)
+    return (prefix, activator, residue, repnum, param_tuples)
 
 if __name__ == '__main__':
     filelist = sys.argv[1:]
@@ -51,16 +51,16 @@ if __name__ == '__main__':
         curve_data.append(cd)
 
     # Prepare data rows for export
-    rows = [('Dataset', 'Residue', 'Rep', 'Parameter', 'Value')]
+    rows = [('Dataset', 'Activator', 'Residue', 'Rep', 'Parameter', 'Value')]
     labels = {
         'pt_data1_newpr': 'KD1',
         'pt_data2_fret_norm': 'KD2',
         'pt_data3_fret_norm': 'KD3',
     }
-    for prefix, residue, repnum, param_tuples in curve_data:
+    for prefix, activator, residue, repnum, param_tuples in curve_data:
         for p_name, p_val in param_tuples:
             p_val_lin = 10**p_val
-            row = [labels[prefix], residue, repnum, p_name, p_val_lin]
+            row = [labels[prefix], activator, residue, repnum, p_name, p_val_lin]
             rows.append(row)
     with open('fig5_MAP_parameter_table.csv', 'w') as f:
         csvwriter = csv.writer(f, delimiter=',')
