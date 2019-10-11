@@ -1,5 +1,7 @@
-Raw data
-========
+.. _bax_bax_fret_terbium_nbd:
+
+KD3: Bax-Bax FRET, NBD, and Release Kinetics
+============================================
 
 By measurement type
 -------------------

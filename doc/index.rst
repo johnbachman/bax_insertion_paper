@@ -12,14 +12,9 @@ Contents:
    :maxdepth: 2
    :numbered:
 
-   bid_bim_nbd_release/index
-   bid_bim_fret_nbd_release/index
-   bax_bax_fret_nbd_release/index
+   bid_bim_nbd_release/raw_data
+   bid_bim_fret_nbd_release/raw_data
+   bax_bax_fret_nbd_release/raw_data
+   labeling_ratios
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
+.. Indices and tables ================== * :ref:`genindex` * :ref:`modindex` * :ref:`search`

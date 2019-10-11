@@ -1,5 +1,7 @@
-Raw data
-========
+.. _bid_bim_fret_terbium_nbd:
+
+KD2: Bid/Bim FRET, NBD, and Release Kinetics
+============================================
 
 By measurement type
 -------------------

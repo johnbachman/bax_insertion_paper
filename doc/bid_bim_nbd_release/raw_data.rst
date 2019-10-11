@@ -1,5 +1,7 @@
-Raw data
-========
+.. _bid_bim_terbium_nbd:
+
+KD1: Bid/Bim Terbium and NBD Kinetics
+=====================================
 
 By measurement type
 -------------------
