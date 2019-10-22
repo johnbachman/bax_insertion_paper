@@ -3,10 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Bax Insertion, Supplementary Information
-========================================
-
-Contents:
+Bax Insertion, Supplementary Appendix
+=====================================
 
 .. toctree::
    :maxdepth: 2

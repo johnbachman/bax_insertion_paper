@@ -217,7 +217,9 @@ def plot_all_by_replicate(df, nbd_residues, datatypes, activators=None,
                 plt.xticks([0, 1000, 2000, 3000, 4000])
             # Give all plots same range for NBD
             for ax2 in ax2_list:
-                ax2.set_ylim([nbd_min * 0.95, nbd_max * 1.05])
+                if not ((dtype == 'NBD' and nbd_site == 'WT') or \
+                        (dtype == 'FRET' and nbd_site == 'WT')):
+                    ax2.set_ylim([nbd_min * 0.95, nbd_max * 1.05])
             plt.subplots_adjust(wspace=0.4, left=0.06, right=0.95)
             # Output file, if desired
             if file_basename:
